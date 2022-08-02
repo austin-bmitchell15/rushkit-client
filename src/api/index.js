@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/contact-list';
+const url = 'https://dashboard.heroku.com/apps/rushkit-project';
 
 export const fetchContacts = () => axios.get(url);
 
