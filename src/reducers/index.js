@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import posts from './posts';
+import contacts from './contacts.js';
 
 export default combineReducers({
-    posts
+    contacts
 });
