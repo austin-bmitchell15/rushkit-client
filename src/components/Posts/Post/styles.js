@@ -42,7 +42,7 @@ export default makeStyles({
     justifyContent: 'space-between',
     margin: '20px',
   },
-  title: {
+  email: {
     padding: '0 16px',
   },
   cardActions: {
