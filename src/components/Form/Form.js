@@ -39,10 +39,9 @@ const Form = ({currentId, setCurrentId}) => {
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">Creating a Memory</Typography>
                 <TextField name="name" variant="outlined" label="Name" fullWidth value={postData.name} onChange={(e) => setPostData({...postData, name: e.target.value})} />
-                <TextField name="email" variant="outlined" label="Email" fullWidth value={postData.Email} onChange={(e) => setPostData({...postData, email: e.target.value})} />
+                <TextField name="email" variant="outlined" label="Email" fullWidth value={postData.email} onChange={(e) => setPostData({...postData, email: e.target.value})} />
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})} />
                 <TextField name="phone" variant="outlined" label="Phone" fullWidth value={postData.phone} onChange={(e) => setPostData({...postData, phone: e.target.value})} />
-                <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({base64}) => setPostData({ ...postData, selectedFiles: base64})}/></div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
