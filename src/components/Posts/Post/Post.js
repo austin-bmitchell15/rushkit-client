@@ -35,7 +35,6 @@ const Post = ({ post, setCurrentId }) => {
                 <Button size="small" color="primary" onClick={() => {}}>
                     <Whatshot fontSize="small" />
                     Like
-                    {post.likeCount}
                 </Button>
                 <Button size="small" color="primary" onClick={() => {dispatch(deletePost(post._id))}}>
                     <DeleteIcon fontSize="small" />
