@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from 'react-file-base64'
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { createContact, updateContact } from "../../actions/contactActions.js";
 import useStyles from './styles.js'
 
 const Form = ({currentId, setCurrentId}) => {
     const [contactInfo, setContactInfo] = useState({
-        name: '', email: '', message: '', phone: '', selectedFiles: '', isHot: false
+        name: '', email: '', message: '', phone: '',  isHot: false, creatorName: ''
     });
     const contact = useSelector((state) => currentId ? state.contacts.find((p) => (p._id === currentId)) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
         if(contact) setContactInfo(contact)
@@ -23,15 +23,25 @@ const Form = ({currentId, setCurrentId}) => {
         e.preventDefault();
         
         if(currentId) {
-            dispatch(updateContact(currentId, contactInfo));
+            dispatch(updateContact(currentId, { ...contactInfo, creatorName: user?.result?.name}));
         } else {
-            dispatch(createContact(contactInfo));
+            dispatch(createContact({ ...contactInfo, creatorName: user?.result?.name}));
         }
         clear();
     }
     const clear = () => {
         setCurrentId(null);
         setContactInfo({name: '', email: '', message: '', phone: '', isHot: false});
+    }
+
+    if (!user?.result?.name) {
+        return (
+            <Paper className={classes.paper}>
+                <Typography variant="h6" align="center">
+                    Please Sign In to create and view contacts
+                </Typography>
+            </Paper>    
+        )
     }
 
     return ( 

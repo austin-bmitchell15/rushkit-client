@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { FETCH_ALL, UPDATE, CREATE, DELETE, LIKE } from '../constants/actionTypes';
+import { FETCH_ALL, UPDATE, CREATE, DELETE } from '../constants/actionTypes';
 
 //Action Creators
 export const getContacts = () => async (dispatch) => {

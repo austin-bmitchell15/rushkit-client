@@ -7,6 +7,7 @@ import useStyles from './styles.js'
 
 const ContactList = ({ setCurrentId }) => {
     const contacts = useSelector((state) => state.contacts);
+    console.log(contacts);
     const classes = useStyles();
     return (
         !contacts.length ? <CircularProgress/> : (

@@ -1,13 +1,20 @@
 import axios from 'axios';
 
-const url = 'https://dashboard.heroku.com/apps/rushkit-project';
+const API = axios.create({ baseURL: 'https://rushkit-project.herokuapp.com' });
 
-export const fetchContacts = () => axios.get(url);
+API.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+    }
 
-export const createContacts = (newContact) => axios.post(url, newContact);
+    return req;
+})
 
-export const updateContact = (id, updatedContact) => axios.patch(`${url}/${id}`, updatedContact);
+export const fetchContacts = () => API.get('/contact-list');
+export const createContacts = (newContact) => API.post('/contact-list', newContact);
+export const updateContact = (id, updatedContact) => API.patch(`/contact-list/${id}`, updatedContact);
+export const deleteContact = (id) => API.delete(`/contact-list/${id}`);
+export const hotContact =  (id) => API.patch(`/contact-list/${id}/hotContact`);
 
-export const deleteContact = (id) => axios.delete(`${url}/${id}`);
-
-export const hotContact =  (id) => axios.patch(`${url}/${id}/hotContact`)
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);
