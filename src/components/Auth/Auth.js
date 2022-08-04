@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 import AuthInput from './AuthInput.js';
 import useStyles from './styles.js';
-import Icon from './Icon.js';
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};

@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Grow, Grid } from '@material-ui/core';
+import { Container, Grow, Grid, Paper } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 import { getContacts } from '../../actions/contactActions.js';
+import Paginate from '../Pagination.jsx';
 import ContactList from '../ContactList/ContactList.js';
 import Form from '../Form/Form.js';
 import useStyles from './styles.js';
@@ -32,6 +33,9 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
+                        <Paper elevation={6}>
+                            <Paginate />
+                        </Paper>
                     </Grid>
                 </Grid>
             </Container>

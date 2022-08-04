@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from '@material-ui/core'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 
-
+import ContactDetails from "./components/ContactDetails/ContactDetails.jsx";
 import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home.js";
 import Auth from "./components/Auth/Auth.js";
@@ -21,14 +21,19 @@ const theme = createTheme({
 
 
 const App = () => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+
     return (
         <BrowserRouter>
             <MuiThemeProvider theme={theme}>
                 <Container>
                     <Navbar/>
                     <Routes>
-                        <Route path="/auth" exact element={<Auth />} />
-                        <Route path="/" exact element={<Home />} />
+                        <Route path="/" element={<Navigate to='/posts'/>} />
+                        <Route path="/auth" element={!user ? <Auth /> : <Navigate to='/posts'/>} />
+                        <Route path="/posts" element={<Home />} />
+                        <Route path="/posts/search" element={<Home />} />
+                        <Route path="/posts/:id" element={<ContactDetails />} />
                     </Routes>
                 </Container>
             </MuiThemeProvider>
