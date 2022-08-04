@@ -1,11 +1,21 @@
 import * as api from '../api';
-import { FETCH_ALL, UPDATE, CREATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_BY_SEARCH, UPDATE, CREATE, DELETE } from '../constants/actionTypes';
 
 //Action Creators
-export const getContacts = () => async (dispatch) => {
+export const getContacts = (page) => async (dispatch) => {
     try {
-        const { data } = await api.fetchContacts();
+        const { data } = await api.fetchContacts(page);
         dispatch({ type: FETCH_ALL, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getContactsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchContactsBySearch(searchQuery);
+
+        dispatch({ type: FETCH_BY_SEARCH, payload: data });
     } catch (error) {
         console.log(error);
     }

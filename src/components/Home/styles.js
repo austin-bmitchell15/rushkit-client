@@ -1,19 +1,20 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
-
-export default makeStyles(() => ({
-    appBar: {
-      borderRadius: 15,
-      margin: '30px',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
+export default makeStyles((theme) => ({
+  appBarSearch: {
+    borderRadius: 4,
+    marginBottom: '1rem',
+    display: 'flex',
+    padding: '16px',
+  },
+  pagination: {
+    borderRadius: 4,
+    marginTop: '1rem',
+    padding: '16px',
+  },
+  gridContainer: {
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
     },
-    heading: {
-      color: 'rgba(121, 11, 24, 0.8)',
-    },
-    image: {
-      marginLeft: '15px',
-    }
-  }));
+  },
+}));

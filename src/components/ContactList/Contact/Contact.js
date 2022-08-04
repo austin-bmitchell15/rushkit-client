@@ -21,7 +21,7 @@ const Contact = ({ contact: contact, setCurrentId }) => {
     }
 
     return ( 
-        <Card className={classes.card}>
+        <Card className={classes.card} raised elevation={6}>
             <CardMedia className={classes.media} image={contact.selectedFile} email={contact.email} compoennt='img'/>
             <div className={classes.overlay}>
                 <Typography variant="h6">{contact.name}</Typography>

@@ -29,11 +29,11 @@ const App = () => {
                 <Container>
                     <Navbar/>
                     <Routes>
-                        <Route path="/" element={<Navigate to='/posts'/>} />
-                        <Route path="/auth" element={!user ? <Auth /> : <Navigate to='/posts'/>} />
-                        <Route path="/posts" element={<Home />} />
-                        <Route path="/posts/search" element={<Home />} />
-                        <Route path="/posts/:id" element={<ContactDetails />} />
+                        <Route path="/" element={<Navigate to='/contact-list'/>} />
+                        <Route path="/auth" element={!user ? <Auth /> : <Navigate to='/contact-list'/>} />
+                        <Route path="/contact-list" element={<Home />} />
+                        <Route path="/contact-list/search" element={<Home />} />
+                        <Route path="/contact-list/:id" element={<ContactDetails />} />
                     </Routes>
                 </Container>
             </MuiThemeProvider>

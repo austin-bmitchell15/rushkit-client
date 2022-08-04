@@ -10,7 +10,7 @@ const Form = ({currentId, setCurrentId}) => {
     const [contactInfo, setContactInfo] = useState({
         name: '', email: '', message: '', phone: '',  isHot: false, creatorName: ''
     });
-    const contact = useSelector((state) => currentId ? state.contacts.find((p) => (p._id === currentId)) : null);
+    const contact = useSelector((state) => currentId ? state.contacts.contacts.find((p) => (p._id === currentId)) : null);
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
