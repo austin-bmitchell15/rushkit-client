@@ -7,6 +7,7 @@ import ContactDetails from "./components/ContactDetails/ContactDetails.jsx";
 import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home.js";
 import Auth from "./components/Auth/Auth.js";
+import UserInfo from "./components/UserInfo/UserInfo.js";
 
 const theme = createTheme({
     palette: {
@@ -34,6 +35,7 @@ const App = () => {
                         <Route path="/contact-list" element={<Home />} />
                         <Route path="/contact-list/search" element={<Home />} />
                         <Route path="/contact-list/:id" element={<ContactDetails />} />
+                        <Route path="/user/:id" element={<UserInfo />}/>
                     </Routes>
                 </Container>
             </MuiThemeProvider>

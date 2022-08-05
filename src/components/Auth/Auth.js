@@ -9,7 +9,7 @@ import AuthInput from './AuthInput.js';
 import useStyles from './styles.js';
 
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '', secretWord: ''};
 
 const Auth = () => {
     const classes = useStyles();
@@ -60,6 +60,13 @@ const Auth = () => {
                             <>
                                 <AuthInput name="firstName" label="First Name" handleChange={handleChange} half />
                                 <AuthInput name="lastName" label="Last Name" handleChange={handleChange} half />
+                            </>
+                        )
+                    }
+                    {
+                        isSignUp && (
+                            <>
+                                <AuthInput name="secretWord" label="Secret Word" handleChange={handleChange} />
                             </>
                         )
                     }

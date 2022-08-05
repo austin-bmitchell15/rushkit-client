@@ -18,5 +18,6 @@ export const updateContact = (id, updatedContact) => API.patch(`/contact-list/${
 export const deleteContact = (id) => API.delete(`/contact-list/${id}`);
 export const hotContact =  (id) => API.patch(`/contact-list/${id}/hotContact`);
 
+
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);

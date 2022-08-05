@@ -8,7 +8,7 @@ import useStyles from './styles.js'
 
 const Form = ({currentId, setCurrentId}) => {
     const [contactInfo, setContactInfo] = useState({
-        name: '', email: '', message: '', phone: '',  isHot: false, creatorName: ''
+        name: '', email: '', message: '', phoneNumber: '',  isHot: false, creatorName: ''
     });
     const contact = useSelector((state) => currentId ? state.contacts.contacts.find((p) => (p._id === currentId)) : null);
     const classes = useStyles();
@@ -31,7 +31,7 @@ const Form = ({currentId, setCurrentId}) => {
     }
     const clear = () => {
         setCurrentId(null);
-        setContactInfo({name: '', email: '', message: '', phone: '', isHot: false});
+        setContactInfo({name: '', email: '', message: '', phoneNumber: '', isHot: false});
     }
 
     if (!user?.result?.name) {
@@ -51,7 +51,7 @@ const Form = ({currentId, setCurrentId}) => {
                 <TextField required name="name" variant="outlined" label="Name" fullWidth value={contactInfo.name} onChange={(e) => setContactInfo({...contactInfo, name: e.target.value})} />
                 <TextField required name="email" variant="outlined" label="Email" fullWidth value={contactInfo.email} onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})} />
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={contactInfo.message} onChange={(e) => setContactInfo({...contactInfo, message: e.target.value})} />
-                <TextField name="phone" variant="outlined" label="Phone" fullWidth value={contactInfo.phone} onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})} />
+                <TextField name="phoneNumber" variant="outlined" label="Phone" fullWidth value={contactInfo.phoneNumber} onChange={(e) => setContactInfo({...contactInfo, phoneNumber: e.target.value})} />
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>

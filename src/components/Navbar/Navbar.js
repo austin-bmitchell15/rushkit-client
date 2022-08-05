@@ -24,14 +24,9 @@ const Navbar = () => {
         setUser(null);
     };
 
-    const handleClick = (e) => {
+    const openUserInfo = (e) => {
         e.preventDefault();
-        setAnchorEl(e.currentTarget);
-    };
-
-    const toggleClose = (e) => {
-        e.preventDefault();
-        setAnchorEl(null);
+        navigate(`/user/${user?.result._id}`);
     };
 
     useEffect(() => {
@@ -55,24 +50,9 @@ const Navbar = () => {
             <Toolbar className={classes.toolbar}>
                 {user && (
                     <div className={classes.profile}>
-                        <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined}>
+                        <IconButton onClick={openUserInfo} size="small" sx={{ ml: 2 }} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined}>
                             <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
                         </IconButton>
-                        <Menu anchorEl={anchorEl} id="account-menu" open={open} onClose={toggleClose} onClick={toggleClose} getContentAnchorEl={null} anchorOrigin={{vertical: 'bottom', horizontal: 'right'}} transformOrigin={{vertical: 'top', horizontal: 'right'}}>
-                            <MenuItem>
-                            <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar> Profile
-                            </MenuItem>
-                                <Divider />
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <Settings fontSize="small" />
-                                </ListItemIcon>
-                                Settings
-                            </MenuItem>
-                            <MenuItem color="primary" onClick={logout}>
-                                Logout
-                            </MenuItem>
-                        </Menu>
                         <Button variant="contained" className={classes.logout} color="primary" onClick={logout}>Logout</Button>
                     </div>
                 )}
