@@ -6,11 +6,12 @@ import Contact from "./Contact/Contact.js"
 import useStyles from './styles.js'
 
 const ContactList = ({ setCurrentId }) => {
-    const { contacts } = useSelector((state) => state.contacts);
+    const { contacts, isLoading } = useSelector((state) => state.contacts);
     console.log(contacts);
     const classes = useStyles();
+
     return (
-        !contacts?.length ? <CircularProgress/> : (
+        isLoading ? <CircularProgress color='secondary'/> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {contacts.map((contact) => (
                     <Grid key={contact._id} item xs={12} sm={6}>

@@ -11,6 +11,7 @@ API.interceptors.request.use((req) => {
 })
 
 export const fetchContacts = (page) => API.get(`/contact-list?page=${page}`);
+export const fetchContact = (id) => API.get(`/contact-list/${id}`);
 export const fetchContactsBySearch = (searchQuery) => API.get(`/contact-list/search?searchQuery=${searchQuery || 'none'}`)
 export const createContacts = (newContact) => API.post('/contact-list', newContact);
 export const updateContact = (id, updatedContact) => API.patch(`/contact-list/${id}`, updatedContact);

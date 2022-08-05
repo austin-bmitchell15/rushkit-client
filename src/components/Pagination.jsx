@@ -7,7 +7,7 @@ import { getContacts } from '../actions/contactActions';
 import useStyles from './styles'
 
 const Paginate = ({ page }) => {
-    const numberOfPages = useSelector((state) => state.posts);
+    const { numberOfPages } = useSelector((state) => state.contacts);
     const classes = useStyles();
     const dispatch = useDispatch();
 

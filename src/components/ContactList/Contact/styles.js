@@ -20,7 +20,6 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
-    margin: '10px'
   },
   overlay: {
     position: 'absolute',
@@ -42,12 +41,16 @@ export default makeStyles({
     justifyContent: 'space-between',
     margin: '20px',
   },
-  email: {
+  title: {
     padding: '0 16px',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  cardAction: {
+    display: 'block',
+    textAlign: 'initial',
   },
 });

@@ -65,7 +65,7 @@ const Home = () => {
                             <Button onClick={handleSearch} className={classes.searchButton} color='primary'>Search</Button>
                         </AppBar>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
-                        <Paper elevation={6}>
+                        <Paper className={classes.pagination} elevation={6}>
                             <Paginate page={ page }/>
                         </Paper>
                     </Grid>
