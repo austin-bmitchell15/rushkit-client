@@ -20,7 +20,7 @@ export const getContact = (id) => async (dispatch) => {
         dispatch({ type: FETCH_CONTACT, payload: data });
         dispatch({ type:STOP_LOADING });
     } catch (error) {
-        console.log(error);
+        
     }
 };
 

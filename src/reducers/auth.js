@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from "../constants/actionTypes";
+import { AUTH, LOGOUT, SIGN_UP_FAILED } from "../constants/actionTypes";
 
 const authReducer =  (state={ authData: null }, action) => {
     switch (action.type) {
@@ -8,6 +8,8 @@ const authReducer =  (state={ authData: null }, action) => {
         case LOGOUT:
             localStorage.clear();
             return { ...state, authData: null};
+        case SIGN_UP_FAILED:
+            return { ...state, errorMessage: action.payload, errorType: action.type };
         default: 
             return state;
     }

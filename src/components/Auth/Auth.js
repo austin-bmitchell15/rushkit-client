@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { signup, signin } from '../../actions/authActions.js';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import AuthInput from './AuthInput.js';
@@ -11,7 +11,7 @@ import useStyles from './styles.js';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '', secretWord: ''};
 
-const Auth = () => {
+const Auth = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +19,6 @@ const Auth = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [formData, setFormData] = useState(initialState);
     const navigate = useNavigate();
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,6 +54,7 @@ const Auth = () => {
                 <LockOutlinedIcon />
             </Avatar>
             <Typography variant='h5'>{isSignUp ? 'Sign Up' : 'Sign In'}</Typography>
+            {props.errorMessage && <div>{props.errorMessage}</div>}
             <form className={classes.form} onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     {
@@ -94,4 +94,9 @@ const Auth = () => {
   )
 }
 
-export default Auth
+const mapStateToProps = (state) => {
+    return {
+        errorMessage: state.auth.errorMessage,
+    };
+};
+export default connect(mapStateToProps)(Auth)

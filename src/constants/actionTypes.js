@@ -12,3 +12,4 @@ export const STOP_LOADING = 'STOP_LOADING';
 //AUTHENTICATION ACTIONS
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
+export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';

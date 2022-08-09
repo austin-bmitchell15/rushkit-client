@@ -1,4 +1,5 @@
-import { AUTH } from '../constants/actionTypes';
+import { AUTH, SIGN_UP_FAILED } from '../constants/actionTypes';
+import { formatError } from '../services/authServices';
 import * as api from '../api/index.js';
 
 export const signin = (formData, navigate) => async (dispatch) => {
@@ -21,6 +22,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
         navigate('/');
     } catch (error) {
-        console.log(error)
+        const errorMessage = formatError(error.response.data);
+        dispatch({ type: SIGN_UP_FAILED, payload: errorMessage})
     }
 }
