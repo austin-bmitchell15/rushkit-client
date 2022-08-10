@@ -14,7 +14,10 @@ export default makeStyles((theme) => ({
   heading: {
     color: 'rgba(121, 11, 24, 0.8)',
     textDecoration: 'none',
-    marginRight: '15px'
+    marginRight: '15px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '2rem',
+    },
   },
   image: {
     marginLeft: '15px',

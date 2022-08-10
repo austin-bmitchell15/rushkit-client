@@ -4,6 +4,7 @@ import Whatshot from '@material-ui/icons/Whatshot';
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreHoriz';
 import useStyles from './styles.js';
+import { DOORMAN, USER, ADMIN } from "../../../constants/roleTypes.js"; 
 import { useDispatch } from 'react-redux';
 
 import { deleteContact, hotContact } from "../../../actions/contactActions.js";
@@ -33,16 +34,18 @@ const Contact = ({ contact: contact, setCurrentId }) => {
                 </div>
             </ButtonBase>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" onClick={() => setIsHot((currValue) => toggleHotList(currValue))}>
-                    {isHot === false ? <Whatshot fontSize="medium" /> : <Whatshot fontSize="medium" style={{ color: "red" }}/>}
-                </Button>
-                {(user?.result?._id === contact?.creatorUserId) && (
+                {(user?.result?.role === ADMIN) && (
+                    <Button size="small" color="primary" onClick={() => setIsHot((currValue) => toggleHotList(currValue))}>
+                        {isHot === false ? <Whatshot fontSize="medium" /> : <Whatshot fontSize="medium" style={{ color: "red" }}/>}
+                    </Button>
+                )}
+                {(user?.result?.role === DOORMAN || user?.result?.role === ADMIN) && (
                     <Button size="small" color="primary" onClick={() => {dispatch(deleteContact(contact._id))}}>
                         <DeleteIcon fontSize="small" />
                         Delete
                     </Button>) 
                 }  
-                {(user?.result?._id === contact?.creatorUserId) && (
+                {(user?.result?.role === DOORMAN || user?.result?.role === ADMIN) && (
                         <Button color='primary' size="small" onClick={() => setCurrentId(contact._id)}>
                             <MoreVertIcon fontSize="medium"></MoreVertIcon>
                         </Button>
