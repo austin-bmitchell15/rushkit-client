@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { DOORMAN, USER, ADMIN } from "../../constants/roleTypes.js"; 
 
 import { getContacts, getContactsBySearch } from '../../actions/contactActions.js';
 import Paginate from '../Pagination.jsx';
@@ -63,8 +64,11 @@ const Home = () => {
                         <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                             <TextField name='search' variant='outlined' label='Search Contacts' fullWidth value={search} onChange={onSearchChange} onKeyDown={handleKeyDown}/>
                             <Button onClick={handleSearch} className={classes.searchButton} color='primary'>Search</Button>
-                        </AppBar>
+                        </AppBar>         
+                    {(user?.result?.role === DOORMAN || user?.result?.role === ADMIN) && (
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
+                    ) 
+                }  
                         <Paper className={classes.pagination} elevation={6}>
                             <Paginate page={ page }/>
                         </Paper>

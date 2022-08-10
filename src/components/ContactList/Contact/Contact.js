@@ -39,6 +39,9 @@ const Contact = ({ contact: contact, setCurrentId }) => {
                         {isHot === false ? <Whatshot fontSize="medium" /> : <Whatshot fontSize="medium" style={{ color: "red" }}/>}
                     </Button>
                 )}
+                {(user?.result?.role === DOORMAN || user?.result?.role === USER) &&
+                    <Whatshot fontSize="medium"style={isHot ? { color: "red" } : {color: "default"}}/>
+                }
                 {(user?.result?.role === DOORMAN || user?.result?.role === ADMIN) && (
                     <Button size="small" color="primary" onClick={() => {dispatch(deleteContact(contact._id))}}>
                         <DeleteIcon fontSize="small" />
