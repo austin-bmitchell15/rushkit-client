@@ -10,7 +10,8 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
         navigate('/');
     } catch (error) {
-        console.log(error)
+        const errorMessage = formatError(error.response.data);
+        dispatch({ type: SIGN_UP_FAILED, payload: {message: errorMessage, type: error.response.data.message} });
     }
 }
 
@@ -23,6 +24,6 @@ export const signup = (formData, navigate) => async (dispatch) => {
         navigate('/');
     } catch (error) {
         const errorMessage = formatError(error.response.data);
-        dispatch({ type: SIGN_UP_FAILED, payload: errorMessage})
+        dispatch({ type: SIGN_UP_FAILED, payload: {message: errorMessage, type: error.response.data.message} });
     }
 }

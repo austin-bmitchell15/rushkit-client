@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { signup, signin } from '../../actions/authActions.js';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { EMAIL_EXISTS, INVALID_CREDENTIALS, PASSWORD_DO_NOT_MATCH, USER_DOES_NOT_EXIST } from '../../constants/errorTypes.js';
 
 import AuthInput from './AuthInput.js';
 import useStyles from './styles.js';
@@ -20,6 +21,8 @@ const Auth = (props) => {
     const [formData, setFormData] = useState(initialState);
     const navigate = useNavigate();
 
+    console.log(props);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
@@ -34,8 +37,12 @@ const Auth = (props) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-    const handleShowSecretWord = () => setShowSecretWord((prevShowSecretWord) => !prevShowSecretWord);
+    const handleShowPassword = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword)
+    };
+    const handleShowSecretWord = () => {
+        setShowSecretWord((prevShowSecretWord) => !prevShowSecretWord)
+    };
 
     const switchMode = () => {
         setIsSignUp((prevIsSignUp) => !prevIsSignUp);
@@ -54,7 +61,6 @@ const Auth = (props) => {
                 <LockOutlinedIcon />
             </Avatar>
             <Typography variant='h5'>{isSignUp ? 'Sign Up' : 'Sign In'}</Typography>
-            {props.errorMessage && <div>{props.errorMessage}</div>}
             <form className={classes.form} onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     {
@@ -68,13 +74,23 @@ const Auth = (props) => {
                     {
                         isSignUp && (
                             <>
-                                <AuthInput name="secretWord" label="Secret Word" handleChange={handleChange} type={showSecretWord ? "text" : "secretWord"} handleShow={handleShowSecretWord}></AuthInput>
+                                <AuthInput name="secretWord" label="Secret Word" handleChange={handleChange} type={showSecretWord ? "text" : "secretWord"}
+                                    error={(props.errorType === INVALID_CREDENTIALS)} errorMessage={(props.errorType === INVALID_CREDENTIALS && props.errorMessage) ? props.errorMessage : ""} handleShow={handleShowSecretWord}>
+                                </AuthInput>
                             </>
                         )
                     }
-                    <AuthInput name="email" label="Email Address" handleChange={handleChange} type="email"></AuthInput>
-                    <AuthInput name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShow={handleShowPassword}></AuthInput>
-                    { isSignUp && <AuthInput name="confirmPassword" label="RepeatPassword" handleChange={handleChange} type="password"></AuthInput>}
+                    <AuthInput name="email" label="Email Address" handleChange={handleChange}  type="email" 
+                        error={ (props.errorType === EMAIL_EXISTS || props.errorType === INVALID_CREDENTIALS || props.errorType === USER_DOES_NOT_EXIST) }
+                        errorMessage={ ((props.errorType === EMAIL_EXISTS || props.errorType === INVALID_CREDENTIALS || props.errorType === USER_DOES_NOT_EXIST)  && props.errorMessage) ? props.errorMessage : "" }>
+                    </AuthInput>
+                    <AuthInput name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShow={handleShowPassword} 
+                        error={ (props.errorType === PASSWORD_DO_NOT_MATCH || props.errorType === INVALID_CREDENTIALS) }
+                        errorMessage={ ((props.errorType === PASSWORD_DO_NOT_MATCH || props.errorType === INVALID_CREDENTIALS)  && props.errorMessage) ? props.errorMessage : "" }>
+                    </AuthInput>
+                    { isSignUp && <AuthInput name="confirmPassword" label="RepeatPassword" handleChange={handleChange} type="password"  
+                        error={props.errorType === PASSWORD_DO_NOT_MATCH} errorMessage={ ( props.errorType === PASSWORD_DO_NOT_MATCH && props.errorMessage) ? props.errorMessage : "" }>
+                    </AuthInput>}
                 </Grid>
                 
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
@@ -97,6 +113,7 @@ const Auth = (props) => {
 const mapStateToProps = (state) => {
     return {
         errorMessage: state.auth.errorMessage,
+        errorType: state.auth.errorType,
     };
 };
 export default connect(mapStateToProps)(Auth)

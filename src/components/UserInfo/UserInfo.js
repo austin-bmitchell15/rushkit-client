@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, CircularProgress, Divider, useEventCallback } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 const UserInfo = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
