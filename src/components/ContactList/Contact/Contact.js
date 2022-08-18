@@ -31,6 +31,7 @@ const Contact = ({ contact: contact, setCurrentId }) => {
                 <CardMedia className={classes.media} image={contact.selectedFile} component='img'/>
                 <div className={classes.details}>
                     <Typography variant="body2" color="textSecondary">{contact.phoneNumber}</Typography>
+                    <Typography variant="body2" color="textSecondary">{contact.year}</Typography>
                 </div>
             </ButtonBase>
             <CardActions className={classes.cardActions}>
