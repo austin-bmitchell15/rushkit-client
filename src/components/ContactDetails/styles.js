@@ -19,6 +19,10 @@ export default makeStyles((theme) => ({
   section: {
     borderRadius: '20px',
     flex: 1,
+    [theme.breakpoints.down('md')]:{
+      marginBottom: '20px',
+      textAlign: 'center',
+    }
   },
   imageSection: {
     marginLeft: '20px',
@@ -26,13 +30,12 @@ export default makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  recommendedPosts: {
-    display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-    },
-  },
   loadingPaper: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '15px',
+    height: '39vh',
   },
 }));

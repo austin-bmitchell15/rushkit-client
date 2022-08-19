@@ -26,8 +26,8 @@ const Home = () => {
     const [search, setSearch] = useState('');
 
     const handleKeyDown = (e) => {
+        e.preventDefault();
         if (e.key === "Enter") {
-            e.preventDefault();
             handleSearch();
         }
 

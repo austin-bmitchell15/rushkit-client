@@ -37,10 +37,12 @@ const Auth = (props) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleShowPassword = () => {
+    const handleShowPassword = (e) => {
+        e.preventDefault();
         setShowPassword((prevShowPassword) => !prevShowPassword)
     };
-    const handleShowSecretWord = () => {
+    const handleShowSecretWord = (e) => {
+        e.preventDefault();
         setShowSecretWord((prevShowSecretWord) => !prevShowSecretWord)
     };
 

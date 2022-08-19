@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
-import { Paper, Typography, CircularProgress, Divider, useEventCallback } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import { Paper, Button, Typography, CircularProgress, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { getContact } from '../../actions/contactActions';
 import useStyles from './styles.js';
+import Survey from './Survey/Survey';
 
 const ContactDetails = () => {
   const { contact, contacts, isLoading } = useSelector((state) => state.contacts);
@@ -13,10 +14,21 @@ const ContactDetails = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getContact(id));
   }, [id])
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  };
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    setOpen(false);
+  };
 
   if (!contact) return null;
 
@@ -38,6 +50,8 @@ const ContactDetails = () => {
         <Divider style={{ margin: '20px 0' }} />
         <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
         <Divider style={{ margin: '20px 0' }} />
+        <Button color='primary' variant='contained' margin='5px' onClick={handleOpen}>Fill Out PNM Survey</Button>
+        <Survey open={open} onClose={handleClose} />
       </Paper>
       <div className={classes.imageSection}>
         <img className={classes.media} width='70' src={contact.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={contact.title} />
