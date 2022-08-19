@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Paper, Button, Typography, CircularProgress, Divider } from '@material-ui/core';
+import { Paper, Button, Typography, CircularProgress, Divider, Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import useStyles from './styles.js';
 import Survey from './Survey/Survey';
 
 const ContactDetails = () => {
-  const { contact, contacts, isLoading } = useSelector((state) => state.contacts);
+  const { contact, isLoading } = useSelector((state) => state.contacts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
@@ -50,10 +50,12 @@ const ContactDetails = () => {
         <Divider style={{ margin: '20px 0' }} />
         <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
         <Divider style={{ margin: '20px 0' }} />
-        <Button color='primary' variant='contained' margin='5px' onClick={handleOpen}>Fill Out PNM Survey</Button>
-        <Survey open={open} onClose={handleClose} />
+        <Grid container justify='center' className={classes.buttonContainer}>
+          <Button color='primary' variant='contained' margin='5px' onClick={handleOpen}>Fill Out PNM Survey</Button>
+        </Grid>
+        <Survey open={open} onClose={handleClose} contact={ contact } />
       </Paper>
-      <div className={classes.imageSection}>
+      <div container className={classes.imageSection}>
         <img className={classes.media} width='70' src={contact.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={contact.title} />
       </div>
     </div>

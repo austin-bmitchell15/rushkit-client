@@ -58,6 +58,16 @@ export const updateContact = (id, contact) => async (dispatch) => {
     }
 };
 
+export const addSurvey = (id, surveyInfo) => async (dispatch) => {
+    try {
+        const { data } = await api.updateContact(id, surveyInfo);
+
+        const { tags } = surveyInfo;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const deleteContact = (id) => async (dispatch) => {
     try {
         await api.deleteContact(id);

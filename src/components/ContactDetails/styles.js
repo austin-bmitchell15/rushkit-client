@@ -19,6 +19,7 @@ export default makeStyles((theme) => ({
   section: {
     borderRadius: '20px',
     flex: 1,
+    padding: '5px',
     [theme.breakpoints.down('md')]:{
       marginBottom: '20px',
       textAlign: 'center',
@@ -38,4 +39,7 @@ export default makeStyles((theme) => ({
     borderRadius: '15px',
     height: '39vh',
   },
+  buttonContainer: {
+    paddingBottom: '5px'
+  }
 }));
