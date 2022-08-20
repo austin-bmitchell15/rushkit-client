@@ -50,7 +50,7 @@ const ContactDetails = () => {
         <Divider style={{ margin: '20px 0' }} />
         <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
         <Divider style={{ margin: '20px 0' }} />
-        <Grid container justify='center' className={classes.buttonContainer}>
+        <Grid container justifyContent='center' className={classes.buttonContainer}>
           <Button color='primary' variant='contained' margin='5px' onClick={handleOpen}>Fill Out PNM Survey</Button>
         </Grid>
         <Survey open={open} onClose={handleClose} contact={ contact } />
