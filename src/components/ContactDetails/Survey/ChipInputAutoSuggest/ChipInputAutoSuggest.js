@@ -64,7 +64,7 @@ const getSuggestionValue = (suggestion) => {
 
 const ChipInputAutoSuggest = (props) => {
     const classes = useStyles();
-    const { data } = props;
+    const { data, setSurveyInfo } = props;
     const [suggestion, setSuggestion] = useState([]);
     const [values, setValues] = useState([]);
     const [textFieldInput, setTextFieldInput] = useState("");
